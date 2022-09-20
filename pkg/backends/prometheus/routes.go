@@ -82,8 +82,8 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{upQuery, upStep},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhts,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
 		},
 
 		APIPath + mnQuery: {
@@ -93,8 +93,8 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{upQuery, upTime},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
 		},
 
 		APIPath + mnSeries: {
@@ -104,8 +104,8 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{upMatch, upStart, upEnd},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
 		},
 
 		APIPath + mnLabels: {
@@ -115,8 +115,8 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
 		},
 
 		APIPath + mnLabel + "/": {
@@ -125,8 +125,8 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			Methods:         []string{http.MethodGet},
 			CacheKeyParams:  []string{},
 			CacheKeyHeaders: []string{},
-			MatchTypeName:   "prefix",
-			MatchType:       matching.PathMatchTypePrefix,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
 			ResponseHeaders: rhinst,
 		},
 
@@ -137,8 +137,8 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
 		},
 
 		APIPath + mnTargetsMeta: {
@@ -148,8 +148,8 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{"match_target", "metric", "limit"},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
 		},
 
 		APIPath + mnRules: {
@@ -159,8 +159,8 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
 		},
 
 		APIPath + mnAlerts: {
@@ -170,8 +170,8 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
 		},
 
 		APIPath + mnAlertManagers: {
@@ -181,8 +181,8 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
 		},
 
 		APIPath + mnStatus: {
