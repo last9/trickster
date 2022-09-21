@@ -327,6 +327,10 @@ func RegisterPathRoutes(router *mux.Router, handlers map[string]http.Handler,
 						decorate(p))).Methods(p.Methods...)
 				}
 				or.PathPrefix(p.Path).Handler(decorate(p)).Methods(p.Methods...)
+			case matching.PathMatchTypeDynamic:
+				or.HandleFunc(p.Path, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+					decorate(p).ServeHTTP(w, r)
+				})).Methods(p.Methods...)
 			default:
 				// default to exact match
 				// Host Header Routing

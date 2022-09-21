@@ -42,7 +42,7 @@ var _ backends.MergeableTimeseriesBackend = (*Client)(nil)
 
 // Prometheus API
 const (
-	APIPath         = "/api/v1/"
+	APIPath         = "/select/{tenant_hash}/prometheus/api/v1/"
 	mnQueryRange    = "query_range"
 	mnQuery         = "query"
 	mnLabels        = "labels"

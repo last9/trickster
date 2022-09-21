@@ -56,7 +56,7 @@ func GetRequestValues(r *http.Request) (url.Values, string, bool) {
 	var v url.Values
 	var s string
 	var isBody bool
-	if !methods.HasBody(r.Method) {
+	if r.URL.Query().Has("query") {
 		v = r.URL.Query()
 		s = r.URL.RawQuery
 	} else if r.Header.Get(headers.NameContentType) == headers.ValueApplicationJSON {
@@ -66,7 +66,7 @@ func GetRequestValues(r *http.Request) (url.Values, string, bool) {
 		r.Body = io.NopCloser(bytes.NewReader(b))
 		s = string(b)
 		isBody = true
-	} else {
+	} else if methods.HasBody(r.Method) {
 		r.ParseForm()
 		v = r.PostForm
 		s = v.Encode()

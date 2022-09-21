@@ -76,14 +76,15 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 	paths := po.Lookup{
 
 		APIPath + mnQueryRange: {
-			Path:            APIPath + mnQueryRange,
-			HandlerName:     mnQueryRange,
-			Methods:         methods.GetAndPost(),
-			CacheKeyParams:  []string{upQuery, upStep},
-			CacheKeyHeaders: []string{},
-			ResponseHeaders: rhts,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			Path:                    APIPath + mnQueryRange,
+			HandlerName:             mnQueryRange,
+			Methods:                 methods.GetAndPost(),
+			CacheKeyParams:          []string{upQuery, upStep},
+			CacheKeyHeaders:         []string{},
+			ResponseHeaders:         rhts,
+			MatchTypeName:           "dynamic",
+			MatchType:               matching.PathMatchTypeDynamic,
+			CollapsedForwardingName: "progressive",
 		},
 
 		APIPath + mnQuery: {
@@ -93,8 +94,9 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{upQuery, upTime},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
+			CollapsedForwardingName: "progressive",
 		},
 
 		APIPath + mnSeries: {
@@ -104,19 +106,21 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{upMatch, upStart, upEnd},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
+			CollapsedForwardingName: "progressive",
 		},
 
 		APIPath + mnLabels: {
 			Path:            APIPath + mnLabels,
 			HandlerName:     "labels",
 			Methods:         methods.GetAndPost(),
-			CacheKeyParams:  []string{},
+			CacheKeyParams:  []string{upMatch},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
+			CollapsedForwardingName: "progressive",
 		},
 
 		APIPath + mnLabel + "/": {
@@ -125,9 +129,10 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			Methods:         []string{http.MethodGet},
 			CacheKeyParams:  []string{},
 			CacheKeyHeaders: []string{},
-			MatchTypeName:   "prefix",
-			MatchType:       matching.PathMatchTypePrefix,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
 			ResponseHeaders: rhinst,
+			CollapsedForwardingName: "progressive",
 		},
 
 		APIPath + mnTargets: {
@@ -137,8 +142,9 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
+			CollapsedForwardingName: "progressive",
 		},
 
 		APIPath + mnTargetsMeta: {
@@ -148,8 +154,9 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{"match_target", "metric", "limit"},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
+			CollapsedForwardingName: "progressive",
 		},
 
 		APIPath + mnRules: {
@@ -159,8 +166,9 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
+			CollapsedForwardingName: "progressive",
 		},
 
 		APIPath + mnAlerts: {
@@ -170,8 +178,9 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
+			CollapsedForwardingName: "progressive",
 		},
 
 		APIPath + mnAlertManagers: {
@@ -181,8 +190,9 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			CacheKeyParams:  []string{},
 			CacheKeyHeaders: []string{},
 			ResponseHeaders: rhinst,
-			MatchTypeName:   "exact",
-			MatchType:       matching.PathMatchTypeExact,
+			MatchTypeName:   "dynamic",
+			MatchType:       matching.PathMatchTypeDynamic,
+			CollapsedForwardingName: "progressive",
 		},
 
 		APIPath + mnStatus: {
@@ -194,6 +204,7 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			MatchTypeName:   "prefix",
 			MatchType:       matching.PathMatchTypePrefix,
 			ResponseHeaders: rhinst,
+			CollapsedForwardingName: "progressive",
 		},
 
 		APIPath + "admin": {
@@ -202,6 +213,7 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			Methods:       methods.AllHTTPMethods(),
 			MatchType:     matching.PathMatchTypePrefix,
 			MatchTypeName: "prefix",
+			CollapsedForwardingName: "progressive",
 		},
 
 		APIPath: {
@@ -210,6 +222,7 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			Methods:       methods.GetAndPost(),
 			MatchType:     matching.PathMatchTypePrefix,
 			MatchTypeName: "prefix",
+			CollapsedForwardingName: "progressive",
 		},
 
 		"/": {
@@ -218,6 +231,7 @@ func (c *Client) DefaultPathConfigs(o *bo.Options) map[string]*po.Options {
 			Methods:       methods.GetAndPost(),
 			MatchType:     matching.PathMatchTypePrefix,
 			MatchTypeName: "prefix",
+			CollapsedForwardingName: "progressive",
 		},
 	}
 
